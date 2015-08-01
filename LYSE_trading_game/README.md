@@ -3,6 +3,7 @@ Addition comments to the Learn You Some Erlang trading system implementation so 
 The chapter url:
 http://learnyousomeerlang.com/finite-state-machines
 
+```erlang
 %   ____________________
 %  /                    V        <----\
 % IDLE -> IDLE_WAIT -> NEGOTIATE       WAIT -> READY -> STOP
@@ -67,3 +68,4 @@ http://learnyousomeerlang.com/finite-state-machines
 %                       | ---------------not_yet-----------> |
 %                       |                                    |
 %                      ???                 ???              ???
+```
