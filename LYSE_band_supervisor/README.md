@@ -7,7 +7,8 @@ supervisors.
 The example is also dumbed down to my level and added probably superfluous
 comments stating the obvious.
 
-```erlang band_supervisor:start_link(Type).
+```erlang  
+band_supervisor:start_link(Type).
 % With the current setup, the band members will start playing in
 % the following order:
 %
@@ -15,7 +16,8 @@ comments stating the obvious.
 %    (2) bass   - good (transient)
 %    (3) drum   - bad  (transient)
 %    (4) keytar - good (temporary)
-```
+```  
+  
 The outcomes:
  - lenient [one_for_one]: The drummers can stumble 3 times (each drummer
  once) in 1 minute otherwise they piss off the manager and everyone
