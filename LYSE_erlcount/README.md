@@ -101,8 +101,7 @@ real way of knowing whether we're finished scheduling files or not.
   *-> Mark each worker with a unique ID (ref) and their replies can
       be matched one-on-one. (`-record(data, {regex=[], refs=[]}).`)
 
-WHY ARE WE SENDING MESSAGES TO OURSELVES WHEN WRITING THE FSM?
---------------------------------------------------------------
+### WHY ARE WE SENDING MESSAGES TO OURSELVES WHEN WRITING THE FSM?
 From LYSE:
 > "Remember, because Erlang's behaviours are pretty much all based on
 >  messages, we have to do the ugly step of sending ourselves messages if
@@ -129,8 +128,7 @@ decode_msg(Msg, ...) ->
 dispatch(Msg, ...)
 ```
 
-COULD WE USE `send_event/2` INSTEAD OF `!` FROM `init/1`?
---------------------------------------------------
+### COULD WE USE `send_event/2` INSTEAD OF `!` FROM `init/1`?
 We could send 
     `gen_fsm:send_event(self(), erlcount_lib:find_erl(Dir))`
 but it would place to much burden on init/1. What if there
@@ -228,9 +226,8 @@ https://github.com/erlang/otp/blob/maint/lib/stdlib/src/proc_lib.erl
 https://github.com/erlang/otp/blob/74a95b3d511177a9b35c2b0272b9ca5511b6f750/lib/kernel/src/global.erl
 
 
-WHY CALL `[-listening-]` STATE EXPLICITYLY FROM `[-dispatching-]` ON `done`?
-------------------------------------------------------------------------
-As I explained to myself over and over above, using an FSM means that
+### WHY CALL `[-listening-]` STATE EXPLICITYLY FROM `[-dispatching-]` ON `done`?
+As I explained it to myself over and over above, using an FSM means that
 we are in a specific state waiting for messages. Switching a state the
 regular means we assume that more messages are going to come in.
 ```erlang
