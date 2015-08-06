@@ -220,6 +220,7 @@ we could have written an extra clause for `[-dispatching-]` state:
 %    {next_state, StateName, StateData};
 %  dispatching({continue, ...)
 %    ...
+```
 
 https://github.com/erlang/otp/blob/maint/lib/stdlib/src/gen_fsm.erl)
 https://github.com/erlang/otp/blob/maint/lib/stdlib/src/gen.erl
@@ -321,7 +322,7 @@ We are tracking all the workers trough their `ref`s and by the global
 %                                                                                               terminate(...)
 ```
 
-We are tracking all workers 
+A more "thorough" flow.
 ```erlang
 %         FSM module    =====                            [gen_fsm]                        [gen]                         [proc_lib]
 %   [erlcount_dispatch] = M =                            =========                        =====                         ==========
