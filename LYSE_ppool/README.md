@@ -120,3 +120,14 @@ init({Limit, MFA, Sup}) ->
 %      |                                    |
 %      :                                    :
 ```
+
+**See diagram in LYSE_erlcount/README.md**
+[1] on diagram:
+    The main process (that spawns the behaviour) is synchronous and  *explicitly* waiting
+    for 2 messages after spawning:
+       {ack, ...}
+           or
+       {'EXIT', ...}
+    `supervisor:start_child/2` is also synchronous and it shoots off its message and
+    then it will wait for {ok, Pid}. BAM!
+
