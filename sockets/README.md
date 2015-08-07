@@ -58,5 +58,5 @@ Connection closed by foreign host.
 
 ![server sequential workflow][2]
 
-[1] http://learnyousomeerlang.com/buckets-of-sockets
-[2] http://learnyousomeerlang.com/static/img/sequential-accept.png
+[1]: http://learnyousomeerlang.com/buckets-of-sockets
+[2]: http://learnyousomeerlang.com/static/img/sequential-accept.png
