@@ -51,6 +51,7 @@ init([]) ->
             % ourselves messages if we want to trigger a function call
             % and do things our way.
             self() ! {start, Dir},
+            io:format("~p~n", [Regexes]),
             {ok, dispatching, #data{regex = [{R,0} || R <- Regexes]}};
         false ->
             {stop, invalid_regex}
@@ -110,15 +111,15 @@ listening(done, #data{regex=Regexes, refs=[]}) ->
 listening(done, Data) ->
     {next_state, listening, Data}.
 
-handle_event({complete, Regex, Ref, Count}, StateName, S = #data{regex=Regexes, refs=Refs}) ->
-    {Regex, OldCount} = lists:keyfind(Regex, 1, Regexes),
-    NewRegexes = lists:keyreplace(Regex, 1, Regexes, {OldCount+Count}),
-    NewS = S#data{regex=NewRegexes, refs=Refs--[Ref]},
-    case StateName of
+handle_event({complete, Regex, Ref, Count}, State, Data = #data{regex=Re, refs=Refs}) ->
+    {Regex, OldCount} = lists:keyfind(Regex, 1, Re),
+    NewRe = lists:keyreplace(Regex, 1, Re, {Regex, OldCount+Count}),
+    NewData = Data#data{regex=NewRe, refs=Refs--[Ref]},
+    case State of
         dispatching ->
-            {next_state, dispatching, NewS};
+            {next_state, dispatching, NewData};
         listening ->
-            listening(done, NewS)
+            listening(done, NewData)
     end.
 
 handle_sync_event(Event, _From, State, Data) ->
