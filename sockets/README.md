@@ -1,5 +1,4 @@
-LYSE [naive tcp server][1]
-=====================
+### LYSE [naive tcp server][1]
 ```erlang
 % Shell  --->  Process 1  ----------->  Process 2
 % =====        =========                =========
