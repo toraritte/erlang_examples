@@ -1,1 +1,1 @@
-Working my way through Learn You Some Erlang and adding lots of extra comments.
+Erlang examples from various sources which are noted at the top.
