@@ -13,7 +13,20 @@ band_supervisor:start_link(Type).
 %    (2) bass   - good (transient)
 %    (3) drum   - bad  (transient)
 %    (4) keytar - good (temporary)
+
+% === musicians.erl (gen_server) ===
+% Something to remember about "gen_server" (and others?) behaviours:
+init([Role, Skill]) ->
+    % http://learnyousomeerlang.com/clients-and-servers
+    % "terminate/2 will also be called when its parent (the process
+    %  that spawned it) dies, IF AND ONLY IF the gen_server is trapping
+    %  exits."
+    process_flag(trap_exit, true),
 ```  
+
+A more elaborate example on how trapping exits in `Module:init/1` can be
+useful:
+http://inaka.net/blog/2012/11/29/every-day-erlang/
   
 The outcomes:
  - **lenient** [`one_for_one`]:  

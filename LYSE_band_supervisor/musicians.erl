@@ -16,8 +16,9 @@ stop(Role) ->
     % why not use gen_server:stop/1 ?
     gen_server:call(Role, stop).
     % It would be perfectly reasonable but it only returns the atom 'ok',
-    % and this whole module is made to show how supervisor properties work
-    % therefore we need a little bit more verbose.
+    % and the Module:terminate/2 callback's return value is ignored.
+    % This whole module is made to show how supervisor properties work
+    % therefore we need to be a little bit more verbose.
     %
     %   gen_server:stop/{1,3} -> ok
     %
@@ -40,6 +41,8 @@ init([Role, Skill]) ->
     % "terminate/2 will also be called when its parent (the process
     %  that spawned it) dies, IF AND ONLY IF the gen_server is trapping
     %  exits."
+    % A more elaborate example on how trapping exits can be useful:
+    % http://inaka.net/blog/2012/11/29/every-day-erlang/
     process_flag(trap_exit, true),
     % sets a seed for random number generation for the life of the process
     rand:seed(exs1024),
